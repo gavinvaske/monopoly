@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const boardSpaceSchema = new schema({
+const BoardSpaceSchema = new schema({
     cost: {
         type: Number,
         required: false
@@ -18,14 +18,17 @@ const boardSpaceSchema = new schema({
         type: Number,
         required: false
     },
-    spaceTypeId: {
+    owner: {
         type: mongoose.Schema.ObjectId,
-        ref: 'spaceType'
+        ref: 'player'
     }
 }, {
     timestamps: true
 });
 
-const BoardSpace = mongoose.model('boardSpace', boardSpaceSchema);
+const BoardSpaceModel = mongoose.model('boardSpace', BoardSpaceSchema);
 
-module.exports = BoardSpace;
+module.exports = {
+    BoardSpaceModel,
+    BoardSpaceSchema
+};

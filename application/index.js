@@ -1,17 +1,22 @@
 require('dotenv').config();
 const express = require('express');
-const {connectToDatabase} = require('./services/database');
+const {connectToDatabase} = require('./services/databaseService');
 const mongoose = require('mongoose');
 
-const defaultPort = 8080;
+const defaultPort = 8000;
 const PORT = process.env.PORT || defaultPort;
 console.log(`port = ${PORT}`);
 console.log(`db = ${process.env.DATABASE_URL}`);
 
 const app = express();
 
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
 app.use('/', require('./controllers/index'));
-app.use('/board', require('./controllers/board'));
+app.use('/boards', require('./controllers/board'));
+// app.use('/players', require('./controllers/player'));
+// app.use('/board-spaces', require('./controllers/boardSpace'));
 
 connectToDatabase(process.env.DATABASE_URL);
 const databaseConnection = mongoose.connection;

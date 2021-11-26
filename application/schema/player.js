@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const playerSchema = new schema({
+const PlayerSchema = new schema({
     boardPosition: {
         type: Number,
         required: false
@@ -15,6 +15,9 @@ const playerSchema = new schema({
 });
 
 
-const PlayerSchema = mongoose.model('playerSchema', playerSchema);
+const PlayerModel = mongoose.model('player', PlayerSchema);
 
-module.exports = PlayerSchema;
+module.exports = {
+    PlayerModel,
+    PlayerSchema
+};

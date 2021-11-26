@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
+const {PlayerSchema} = require('./player');
+const {BoardSpaceSchema} = require('./boardSpace');
 
 const boardSchema = new schema({
-    position: {
-        type: Number,
+    players: {
+        type: [PlayerSchema],
         required: true
     },
-    boardSpaceId: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'boardSpace',
-        required: true
+    boardSpaces: {
+        type: [BoardSpaceSchema],
+        required: false
     }
 }, {
     timestamps: true
