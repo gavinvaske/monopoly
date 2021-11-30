@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const {connectToDatabase} = require('./services/databaseService');
+const {connectToDatabase} = require('./services/DatabaseService');
 const mongoose = require('mongoose');
 
 const defaultPort = 8000;
@@ -14,9 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 app.use('/', require('./controllers/index'));
-app.use('/boards', require('./controllers/board'));
-// app.use('/players', require('./controllers/player'));
-// app.use('/board-spaces', require('./controllers/boardSpace'));
+app.use('/games', require('./controllers/GameController'));
 
 connectToDatabase(process.env.DATABASE_URL);
 const databaseConnection = mongoose.connection;

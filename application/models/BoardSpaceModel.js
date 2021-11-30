@@ -20,7 +20,12 @@ const BoardSpaceSchema = new schema({
     },
     owner: {
         type: mongoose.Schema.ObjectId,
-        ref: 'player'
+        ref: 'player',
+        required: false
+    },
+    positionOnBoard: {
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true
