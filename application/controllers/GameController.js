@@ -4,6 +4,7 @@ const PlayerService = require('../services/PlayerService');
 const BoardSpaceService = require('../services/BoardSpaceService');
 const {GameModel} = require('../models/GameModel');
 const {BoardModel} = require('../models/BoardModel');
+const GameService = require('../services/GameService');
 
 router.post('/', (request, response) => {
     const requestBody = request.body;
@@ -47,7 +48,16 @@ router.get('/:id', (request, response) => {
 });
 
 router.get('/:id/dice-roll', async (request, response) => {
-    response.send('todo');
+    const id = request.params.id;
+    const game = await GameService.findGameById(id);
+
+    console.log(game)
+    console.log(`current turn = ${game.turnCounter}`);
+    const currentTurn = game.turnCounter;
+
+    GameService.executeNextTurn(game);
+
+    response.send(game);
 });
 
 module.exports = router;

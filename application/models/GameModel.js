@@ -11,6 +11,10 @@ const GameSchema = new schema({
     board: {
         type: BoardSchema,
         required: true
+    },
+    turnCounter: {
+        type: Number,
+        default: 0
     }
 }, {
     timestamps: true
