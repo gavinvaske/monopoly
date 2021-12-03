@@ -12,7 +12,7 @@ describe('game service', () => {
     it('should find game if ID exists', async () => {
         // given
         const id = chance.integer();
-        GameModel.findById = jest.fn().mockResolvedValue({});
+        GameModel.findById.mockResolvedValue({});
 
         // when
         const game = await GameService.findGameById(id);
@@ -25,7 +25,7 @@ describe('game service', () => {
     it('should throw error if game is not found with ID', async () => {
         // given
         const id = chance.integer();
-        GameModel.findById = jest.fn().mockResolvedValue(null);
+        GameModel.findById.mockResolvedValue(null);
         let errorMessage = '';
 
         try {
